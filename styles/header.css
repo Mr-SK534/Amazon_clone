@@ -89,39 +89,30 @@
 }
 
 .cart-link {
-    display: flex;
-    align-items: flex-end;
     color: white;
-}
-
-.cart-icon-wrapper {
+    display: flex;
+    align-items: center;
     position: relative;
 }
 
 .cart-icon {
-    width: 51px;
-    margin-bottom: 1px;
+    width: 50px;
+    display: block;
 }
 
 .cart-count {
-    position: absolute;
-    top: 2px;
-    left: 25px;
-    color: rgb(254, 149, 0);
-    font-size: 17px;
+    color: rgb(240, 136, 4);
+    font-size: 16px;
     font-weight: 700;
+    position: absolute;
+    top: 4px;
+    left: 22px;
+    width: 26px;
+    text-align: center;
 }
 
 .cart-text {
+    margin-top: 12px;
     font-size: 15px;
     font-weight: 700;
-    margin-left: -2px;
-    margin-bottom: 6px;
-}
-
-.left-section {
-  width: 180px;
-}
-.right-section {
-  width: 180px;
 }
