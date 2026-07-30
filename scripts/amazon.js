@@ -1,4 +1,4 @@
-import {cart, addToCart} from '../data/cart.js';
+import {cart, addToCart, updateCartQuantity} from '../data/cart.js';
 import {products} from '../data/products.js';
 
 let productsHTML=``;
@@ -20,7 +20,7 @@ products.forEach((product)=>{
                 </div>
 
                 <div class="product-price">
-                    $${(product.priceCents/100).toFixed(2)}
+                    $${(Math.round(product.priceCents)/100).toFixed(2)}
                 </div>
 
                 <div class="product-quantity-container">
@@ -52,8 +52,13 @@ products.forEach((product)=>{
 
 document.querySelector('.js-products-grid').innerHTML=productsHTML;
 
-let cartQuantity=0;
 
+
+function renderCartQuantity(){
+    document.querySelector('.js-cart-quantity').innerHTML = updateCartQuantity();
+}
+
+renderCartQuantity();  // ✅ runs once when amazon.js loads, only on this page
 
 
 document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
@@ -65,9 +70,6 @@ document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
         const productId = button.dataset.productId;
         addToCart(productId, quantitySelected);
 
-        cartQuantity += quantitySelected;
-        document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-
-        console.log(cart);
+        renderCartQuantity();   // ✅ recalculates from the real cart data
     });
 });
