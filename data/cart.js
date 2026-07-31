@@ -69,3 +69,8 @@ export function updateQuantity(productId, newQuantity){
 
     saveToStorage();
 }
+
+export function clearCart(){
+    cart.length = 0;
+    saveToStorage();
+}
