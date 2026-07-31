@@ -10,10 +10,10 @@ A multi-page Amazon e-commerce clone built with vanilla JavaScript, HTML, and CS
 
 | Page | Preview |
 |------|---------|
-| Home | ![Home Page](images/preview/home) |
-| Checkout | ![Checkout Page](images/preview/checkout) |
-| Orders | ![Orders Page](images/preview/order) |
-| Tracking | ![Tracking Page](images/preview/tracking) |
+| Home | ![Home Page](images/preview/home.png) |
+| Checkout | ![Checkout Page](images/preview/checkout.png) |
+| Orders | ![Orders Page](images/preview/order.png) |
+| Tracking | ![Tracking Page](images/preview/tracking.png) |
 
 ---
 
@@ -84,7 +84,12 @@ amazon-clone/
 │   ├── products/
 │   │   └── variations/
 │   ├── icons/
-│   └── ratings/
+│   ├── ratings/
+│   └── preview/
+│       ├── home.png
+│       ├── checkout.png
+│       ├── order.png
+│       └── tracking.png
 │
 └── tests-jasmine/
     ├── tests.html
