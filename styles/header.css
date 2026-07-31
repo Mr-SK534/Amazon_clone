@@ -116,3 +116,17 @@
     font-size: 15px;
     font-weight: 700;
 }
+.amazon-mobile-logo {
+    display: none;
+}
+
+@media (max-width: 575px) {
+    .amazon-logo {
+        display: none;
+    }
+
+    .amazon-mobile-logo {
+        display: block;
+        height: 35px;
+    }
+}
