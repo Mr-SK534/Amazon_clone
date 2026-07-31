@@ -115,7 +115,7 @@ amazon-clone/
 1. **Clone the repository**
    ```bash
    git clone https://github.com/Mr-SK534/Amazon_clone
-   cd amazon-clone
+   cd amazon_clone
    ```
 
 2. **Open in browser**
