@@ -10,11 +10,6 @@ export function saveOrdersToStorage() {
 
 const kDayInMs = 24 * 60 * 60 * 1000;
 
-/**
- * Builds a new order from the current cart contents and
- * saves it to localStorage. Does NOT clear the cart itself —
- * call clearCart() (from cart.js) separately after this.
- */
 export function addOrder() {
   const orderTimeMs = Date.now();
   const orderProducts = [];
