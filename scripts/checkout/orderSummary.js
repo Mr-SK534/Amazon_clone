@@ -13,6 +13,21 @@ export function renderOrderSummary() {
 }
   let cartSummaryHTML = '';
 
+  if (cart.length === 0) {
+  cartSummaryHTML = `
+    <div class="empty-cart-message">
+      Your cart is empty.
+    </div>
+    <a class="view-products-link link-primary" href="amazon.html">
+      View products
+    </a>
+  `;
+
+  document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
+  renderCheckoutHeader();
+  return;
+}
+
   cart.forEach((cartItems) => {
     const productId = cartItems.productId;
 
@@ -43,11 +58,17 @@ export function renderOrderSummary() {
                   $${formatCurrency(matchingProduct.priceCents)}
                 </div>
                 <div class="product-quantity">
-                  <span>
+                  <span class="js-quantity-label">
                     Quantity: <span class="quantity-label">${cartItems.quantity}</span>
                   </span>
+                  <input type="number" min="1" value="${cartItems.quantity}"
+                    class="quantity-input js-quantity-input"
+                    style="display:none">
                   <span class="update-quantity-link link-primary js-update-link" data-product-id="${matchingProduct.id}">
                     Update
+                  </span>
+                  <span class="save-quantity-link link-primary js-save-link" data-product-id="${matchingProduct.id}" style="display:none">
+                    Save
                   </span>
                   <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
                     Delete
@@ -120,11 +141,38 @@ document.querySelectorAll('.js-save-link').forEach((link) => {
     const quantityInput = container.querySelector('.js-quantity-input');
     const newQuantity = Number(quantityInput.value);
 
+    if (!newQuantity || newQuantity < 1) {
+      return;
+    }
+
     updateQuantity(productId, newQuantity);
     renderOrderSummary();
+    renderPaymentSummary();
     renderCheckoutHeader();   // ✅ add this line
   });
 });
+
+  document.querySelectorAll('.js-update-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      const productId = link.dataset.productId;
+      const container = document.querySelector(`.js-cart-item-container-${productId}`);
+
+      container.querySelector('.js-quantity-label').style.display = 'none';
+      container.querySelector('.js-quantity-input').style.display = '';
+      container.querySelector('.js-quantity-input').focus();
+      link.style.display = 'none';
+      container.querySelector('.js-save-link').style.display = '';
+    });
+  });
+
+  document.querySelectorAll('.js-quantity-input').forEach((input) => {
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        const container = input.closest('.cart-item-container');
+        container.querySelector('.js-save-link').click();
+      }
+    });
+  });
   document.querySelectorAll('.js-delivery-option').forEach((element) => {
     element.addEventListener('click', () => {
       const { productId, deliveryOptionId } = element.dataset;
