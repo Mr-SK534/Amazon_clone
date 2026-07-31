@@ -1,6 +1,7 @@
 import { cart } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
+import { formatCurrency } from "../utils/money.js";
 
 export function renderPaymentSummary() {
     let productPriceCents = 0;
@@ -30,35 +31,35 @@ export function renderPaymentSummary() {
             <div class="payment-summary-row">
                 <div>Items (${totalQuantity}):</div>
                 <div class="payment-summary-money">
-                $${(Math.round(productPriceCents) / 100).toFixed(2)}
+                $${formatCurrency(productPriceCents)}
                 </div>
             </div>
 
             <div class="payment-summary-row">
                 <div>Shipping &amp; handling:</div>
                 <div class="payment-summary-money">
-                    $${(Math.round(shippingPriceCents) / 100).toFixed(2)}
+                    $${formatCurrency(shippingPriceCents)}
                 </div>
             </div>
 
             <div class="payment-summary-row subtotal-row">
                 <div>Total before tax:</div>
                 <div class="payment-summary-money">
-                    $${(Math.round(totalBeforeTaxCents) / 100).toFixed(2)}
+                    $${formatCurrency(totalBeforeTaxCents)}
                 </div>
             </div>
 
             <div class="payment-summary-row">
                 <div>Estimated tax (10%):</div>
                 <div class="payment-summary-money">
-                    $${(Math.round(taxCents) / 100).toFixed(2)}
+                    $${formatCurrency(taxCents)}
                 </div>
             </div>
 
             <div class="payment-summary-row total-row">
                 <div>Order total:</div>
                 <div class="payment-summary-money">
-                    $${(Math.round(totalCents) / 100).toFixed(2)}
+                    $${formatCurrency(totalCents)}
                 </div>
             </div>
 
